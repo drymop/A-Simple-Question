@@ -31,15 +31,16 @@ public class GUI extends JPanel {
 	public GUI(ActionListener yesListener, ActionListener noListener) {
 		initComponents();
 		
+		yesButton.setFocusable(false);
+		noButton.setFocusable(false);
+		yesButton.addActionListener(yesListener);
 		noButton.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				resetButtons();
 			}
 		});
-
 		noButton.addActionListener(noListener);
-		yesButton.addActionListener(yesListener);
 	}
 	
 	private void initComponents() {
@@ -67,7 +68,7 @@ public class GUI extends JPanel {
 			r = (int)(Math.random() * ROWS);
 			c = (int)(Math.random() * COLS);
 		} while ((r == YES_BTN_ROW && c == YES_BTN_COL)
-				|| (r == noBtnRow && c == noBtnCol));
+				|| (r == noBtnRow && c == noBtnCol && Math.random() < 0.01));
 		resetButtons(r, c);
 	}
 	
